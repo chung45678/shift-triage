@@ -1,0 +1,56 @@
+:root{font-family:Inter,system-ui,sans-serif;color:#142d2b;background:#f2f5ef;font-synthesis:none;line-height:1.45}
+*{box-sizing:border-box}
+body{margin:0}
+button,input,select{font:inherit}
+button,select,input[type=range]{cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #146b60;outline-offset:3px}
+.top{background:#123330;color:#fff}
+.top-inner{max-width:1216px;margin:auto;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-weight:750;letter-spacing:-.03em;font-size:19px;display:flex;align-items:center;gap:10px}
+.mark{display:grid;place-items:center;background:#c9f084;color:#133330;width:30px;height:30px;border-radius:8px}
+.sample{font-size:12px;border:1px solid #78948d;padding:5px 10px;border-radius:999px}
+main{max-width:1216px;margin:auto;padding:44px 32px}
+.context{font-size:12px;font-weight:750;letter-spacing:.095em;color:#39625b}
+.context span{padding:0 5px}
+h1,h2,h3,p{margin:0}
+h1{font-size:clamp(38px,6vw,66px);letter-spacing:-.078em;line-height:1.08;margin:7px 0 10px}
+.intro p,.policy,.decision p{color:#4a625d}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin:28px 0 22px;border:1px solid #d2dfd5;border-radius:14px;background:#e6efe3}
+.metrics div{padding:15px 18px;border-right:1px solid #d2dfd5}
+.metrics div:last-child{border:0}
+.metrics span{display:block;font-size:13px;color:#395a53;font-weight:650}
+.metrics strong{display:block;font-size:29px;letter-spacing:-.055em}
+.metrics small{font-size:14px;letter-spacing:normal;color:#4a625d}
+.grid{display:grid;grid-template-columns:minmax(330px, .85fr) minmax(0,1.25fr);gap:18px;align-items:start}
+.panel{background:#fff;border:1px solid #d7e0d8;border-radius:14px;padding:20px}
+.section-head,.budget-label,.range-ends,.decision{display:flex;justify-content:space-between;align-items:center;gap:10px}
+h2{font-size:20px;letter-spacing:-.035em}
+h3{font-size:14px}
+.text-button{border:0;background:none;color:#23594e;text-decoration:underline;padding:6px}
+.budget-label{font-size:14px;margin-top:15px;font-weight:650}
+input[type=range]{width:100%;accent-color:#22685a;margin:12px 0 0}
+.range-ends,.hint,.policy,.evidence p{font-size:13px;color:#4a625d}
+.range-ends{margin-bottom:17px}
+ul{margin:0;padding:0;list-style:none}
+.crew li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #e3ebe4}
+.crew label,.roles strong{font-weight:700;font-size:14px}
+.crew small,.roles small{display:block;color:#4a625d;font-size:12px}
+select{background:white;border:1px solid #aabeb3;border-radius:7px;padding:6px;font-size:12px;color:#142d2b}
+.hint{margin-top:13px}
+.badge{font-size:11px;font-weight:750;background:#e0f1dd;color:#2a5935;border-radius:999px;padding:5px 9px;text-align:center}
+.gap{background:#ffe7d3;color:#853911}
+.policy{margin:5px 0 13px}
+.roles button{display:grid;grid-template-columns:1fr auto 12px;gap:10px;align-items:center;width:100%;text-align:left;background:white;color:inherit;border:1px solid #d7e0d8;border-radius:8px;padding:7px 10px;margin-bottom:5px;font-size:13px}
+.roles button[aria-pressed=true]{background:#ecf5e9;border-color:#629280}
+.chevron{font-size:19px;text-align:right}
+.attention{color:#8b401b;font-weight:700}
+.evidence{margin-top:13px;padding:12px;background:#f4f7f1;border-radius:8px}
+.evidence p{margin:3px 0 7px}
+.evidence li{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:3px 0;border-top:1px solid #dce6da}
+.evidence li span:last-child{text-align:right}
+.decision{margin-top:18px;background:#dcebd9;border-radius:12px;padding:14px 18px}
+.decision h2{font-size:16px}
+.decision p{font-size:13px}
+.decision button{background:#123330;color:white;border:0;border-radius:8px;padding:9px 12px;flex-shrink:0}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.metrics div:nth-child(2){border-right:0}.metrics div:nth-child(-n+2){border-bottom:1px solid #d2dfd5}}
+@media(max-width:480px){main,.top-inner{padding-left:15px;padding-right:15px}main{padding-top:27px}.panel{padding:14px}.metrics div{padding:10px}.decision{align-items:start;flex-direction:column}}
