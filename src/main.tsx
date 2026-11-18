@@ -32,7 +32,7 @@ function App() {
 
   return <>
     <header className="top">
-      <div className="top-inner"><div className="brand"><span className="mark" aria-hidden="true">↗</span> Shift Triage</div>
+      <div className="top-inner"><div className="brand"><span className="mark" aria-hidden="true">+</span> Shift Triage</div>
         <span className="sample">Synthetic scenario</span></div>
     </header>
     <main>
