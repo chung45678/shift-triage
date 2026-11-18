@@ -30,6 +30,7 @@ try {
   await verify(summary, /Critical coverage\s+1\s*\/\s*2/);
   await page.getByRole('button', { name: /Dispatch lead.*Escalate/ }).waitFor();
   await verify(page.locator('.evidence'), /No confirmed worker has the required qualification/);
+  await verify(page.locator('.evidence'), /Avery Chen\s+Unavailable/);
   await page.getByRole('button', { name: 'Mark plan reviewed' }).click();
   await page.getByRole('heading', { name: 'Proposal reviewed' }).waitFor();
 
