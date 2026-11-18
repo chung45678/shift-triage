@@ -4,6 +4,8 @@
 
 A food-bank shift coordinator needs to cover critical roles after a call-out and decide what to escalate. Shift Triage proposes a feasible assignment based on qualifications, availability and the labor cap. The sample roster and rules are synthetic.
 
+![Dispatch staffing screen with the budget, crew availability, and recommended assignments](docs/screenshot.png)
+
 ## Try it in one minute
 
 1. Open **Dispatch staffing**. At $60, compare the recommended 2/2 critical coverage against 1/2 for roster order.

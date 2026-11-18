@@ -7,3 +7,15 @@ The planner processes workers one at a time. A bitmask identifies the roles alre
 For R roles and W workers, there are at most 2^R states and O(W × R × 2^R) transitions before accounting for copying the assignment arrays. This is a deliberate small-roster trade-off. A flow or integer-programming formulation would be worth evaluating for larger, multi-window work. Costs use whole dollars and the planner checks unique identifiers, nonnegative safe integers, and scenario limits of 12 roles and 50 workers. A worker without confirmed availability or the required skill is excluded for that role. Infeasibility results in the best partial plan. The evidence shows why each worker is excluded or where eligible workers were assigned. It does not claim that every uncovered role has a unique cause.
 
 [Planner tests](../tests/planner.test.ts) cover the initial baseline, call-out, budget boundary, confirmation change, empty and unconfirmed rosters, malformed inputs, and a separate role-first exhaustive enumerator. The enumerator validates the objective and the checks validate eligibility, uniqueness and cost accounting. Production compilation uses TypeScript followed by a Vite static build.
+
+## Browser verification
+
+On November 18, 2026, a fresh Chromium session with no saved login opened the public Site and verified the default 2/2 critical recommendation and 1/2 baseline, inspected dispatch evidence, changed Avery to Called out, confirmed the escalation and unavailable-worker explanation, and marked the proposal reviewed. A keyboard change to $0 left all four roles open and cleared the review. Reset restored the default. At 375 pixels wide, the page fit the viewport without horizontal overflow. The script also asserted zero page exceptions.
+
+The workspace proxy certificate was accepted by the shell HTTP client, which independently returned HTTP 200 without credentials. Chromium required the proxy-certificate test option in this workspace. [Browser checks](../scripts/check-demo.mjs)
+
+To reproduce with a local Chromium installation:
+
+```sh
+PLAYWRIGHT_CHROMIUM_EXECUTABLE=/usr/bin/chromium node scripts/check-demo.mjs https://shift-triage-lab.robustoatcake2.chatgpt.site
+```
