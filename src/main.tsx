@@ -8,10 +8,10 @@ import './style.css';
 
 const MAX_BUDGET = 120;
 
-function Pips({ total, lit, tone }: { total: number; lit: number; tone: 'ok' | 'warn' | 'cool' }) {
-  return <span className={'pips ' + tone} aria-hidden="true">
-    {Array.from({ length: total }, (_, index) => <i key={index} className={index < lit ? 'on' : ''} />)}
-  </span>;
+function Chevron() {
+  return <svg className="chevron" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+    <path d="M6 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>;
 }
 
 function initials(name: string) {
@@ -48,38 +48,27 @@ function App() {
   return <>
     <header className="top">
       <div className="top-inner">
-        <div className="brand"><span className="mark" aria-hidden="true"><i /><i /></span> Shift Triage</div>
-        <div className="context">Northside Food Bank <span aria-hidden="true">/</span> Sat 08:00–12:00</div>
-        <span className="sample"><span className="led" aria-hidden="true" />Synthetic scenario</span>
+        <div className="brand"><span className="mark" aria-hidden="true"><i /><i /></span>Shift Triage</div>
+        <div className="context">Northside Food Bank <span aria-hidden="true">·</span> Sat 08:00–12:00</div>
+        <span className="sample">Synthetic scenario</span>
       </div>
     </header>
     <main>
       <div className="intro">
-        <div>
-          <p className="eyebrow">Dispatch console</p>
-          <h1>Dispatch staffing</h1>
-          <p className="lede">Cover critical roles first, then decide which staffing gaps to escalate.</p>
-        </div>
-        <div className={'state-chip ' + tone} aria-hidden="true">
-          <span className="led" />{criticalGap ? 'Critical gap' : unfilled ? 'Partial coverage' : 'Fully staffed'}
-        </div>
+        <h1>Dispatch staffing</h1>
+        <p className="lede">Cover critical roles first, then decide which staffing gaps to escalate</p>
       </div>
 
       <div className="metrics" aria-label="Plan summary" aria-live="polite">
-        <div><span>Critical coverage</span><strong>{plan.critical}<small> / {criticalTotal}</small></strong>
-          <Pips total={criticalTotal} lit={plan.critical} tone="ok" /></div>
-        <div><span>Roles to escalate</span><strong>{unfilled}</strong>
-          <Pips total={roles.length} lit={unfilled} tone="warn" /></div>
-        <div><span>Proposed spend</span><strong>${plan.cost}<small> / ${budget}</small></strong>
-          <span className="meter" aria-hidden="true">
-            <i style={{ width: `${budget ? Math.min(100, plan.cost / budget * 100) : 0}%` }} /></span></div>
-        <div><span>Roster-order coverage</span><strong>{baseline.critical}<small> / {criticalTotal} critical</small></strong>
-          <Pips total={criticalTotal} lit={baseline.critical} tone="cool" /></div>
+        <div><span>Critical coverage</span><strong>{plan.critical}<small> / {criticalTotal}</small></strong></div>
+        <div><span>Roles to escalate</span><strong>{unfilled}<small> of {roles.length} roles</small></strong></div>
+        <div><span>Proposed spend</span><strong>${plan.cost}<small> / ${budget} budget</small></strong></div>
+        <div><span>Roster-order coverage</span><strong>{baseline.critical}<small> / {criticalTotal} critical</small></strong></div>
       </div>
 
       <div className="grid">
         <section className="panel controls" aria-labelledby="controls-title">
-          <div className="section-head"><h2 id="controls-title"><span className="step">01</span>Scenario inputs</h2>
+          <div className="section-head"><h2 id="controls-title">Scenario inputs</h2>
             <button className="text-button" onClick={reset}>Reset</button></div>
           <div className="fader">
             <label className="budget-label" htmlFor="budget">Labor budget <strong>${budget}</strong></label>
@@ -101,39 +90,39 @@ function App() {
               <option value="out">Called out</option>
             </select>
           </li>)}</ul>
-          <p className="hint">Try setting Avery Chen to Called out to see what changes.</p>
+          <p className="hint">Try setting Avery Chen to Called out to see what changes</p>
         </section>
 
         <section className="panel results" aria-labelledby="results-title">
-          <div className="section-head"><h2 id="results-title"><span className="step">02</span>Recommended plan</h2>
-            <span className={criticalGap ? 'badge gap' : 'badge'}>{criticalGap ? 'Critical gap' : 'Critical roles covered'}</span></div>
-          <p className="policy">Priority order: critical coverage, standard coverage, lowest spend.</p>
+          <div className="section-head"><h2 id="results-title">Recommended plan</h2>
+            <span className={criticalGap ? 'badge gap' : 'badge'}><span className="tag" aria-hidden="true" />{criticalGap ? 'Critical gap' : 'Critical roles covered'}</span></div>
+          <p className="policy">Priority: critical roles, then standard roles, then lowest spend</p>
           <ul className="roles">{roles.map(item => {
             const assignment = plan.assignments.find(entry => entry.roleId === item.id);
             const worker = workers.find(person => person.id === assignment?.workerId);
             const state = worker ? 'filled' : item.critical ? 'critical' : 'open';
             return <li key={item.id}><button aria-pressed={item.id === selected} data-state={state}
               onClick={() => setSelected(item.id)}>
-              <span className="led" aria-hidden="true" />
+              <span className="tag" aria-hidden="true" />
               <span><strong>{item.name}</strong><small>{item.critical ? 'Critical' : 'Standard'}</small></span>
               <span className={worker ? 'assignee' : 'assignee attention'}>{worker ? worker.name : 'Escalate'}
                 {worker && <em> ${worker.cost}</em>}</span>
-              <span className="chevron" aria-hidden="true">›</span>
+              <Chevron />
             </button></li>;
           })}</ul>
         </section>
 
         <aside className="panel evidence" aria-live="polite" aria-labelledby="evidence-title">
-          <div className="section-head"><h3 id="evidence-title"><span className="step">03</span>{role.name} evidence</h3></div>
+          <div className="section-head"><h3 id="evidence-title">{role.name} evidence</h3></div>
           <div className="inspect">
             <div><span>Requires</span><strong>{role.skill}</strong></div>
             <div><span>Priority</span><strong>{role.critical ? 'Critical' : 'Standard'}</strong></div>
             <div><span>Proposed</span><strong className={proposedWorker ? '' : 'attention'}>{proposedWorker?.name ?? 'None'}</strong></div>
           </div>
-          <p>{proposed ? 'The proposed worker meets both availability and qualification requirements.'
+          <p>{proposed ? 'The proposed worker meets both availability and qualification requirements'
             : workers.some(worker => !eligibility(worker, role))
-              ? 'Compare the eligible workers with their current assignments and the remaining budget.'
-              : 'No confirmed worker has the required qualification.'}</p>
+              ? 'Compare the eligible workers with their current assignments and the remaining budget'
+              : 'No confirmed worker has the required qualification'}</p>
           <ul>{workers.map(worker => {
             const assigned = plan.assignments.find(item => item.workerId === worker.id);
             const assignedRole = roles.find(item => item.id === assigned?.roleId);
@@ -148,12 +137,12 @@ function App() {
       </div>
 
       <section className={'decision ' + (reviewed ? 'done' : tone)} aria-label="Coordinator decision">
-        <span className="led" aria-hidden="true" />
+        <span className="tag" aria-hidden="true" />
         <div><h2>{reviewed ? 'Proposal reviewed' : 'Coordinator decision'}</h2>
           <p role="status">{reviewed ? 'Review marked for the current scenario. No notifications were sent.'
-            : criticalGap ? 'Escalate uncovered critical roles before dispatch.'
+            : criticalGap ? 'Escalate uncovered critical roles before dispatch'
               : unfilled ? 'Critical work can proceed. Escalate the remaining roles or defer them after review.'
-                : 'Every open role has a proposed worker.'}</p></div>
+                : 'Every open role has a proposed worker'}</p></div>
         <button className={reviewed ? 'ghost' : ''} onClick={() => setReviewed(value => !value)}>
           {reviewed ? 'Reopen review' : 'Mark plan reviewed'}</button>
       </section>
