@@ -31,4 +31,4 @@ npm run dev
 
 ## Attribution
 
-Inspired by [Cal.com](https://cal.com/) and its use of availability to route work across a team. Shift Triage independently implements the assignment model, example data and visual design. Codex assisted with research, implementation, documentation and verification.
+Inspired by [Cal.com](https://cal.com/) and its use of availability to route work across a team. Shift Triage independently implements the assignment model, example data and visual design (a dark navy dispatch-console theme: matte panels, brushed-steel edges, gloss reserved for primary actions). Codex assisted with research, implementation, documentation and verification.
